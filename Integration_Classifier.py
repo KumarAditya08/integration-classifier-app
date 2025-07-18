@@ -8,9 +8,9 @@ from sklearn.metrics import accuracy_score
 
 @st.cache_resource
 def load_everything():
-    vec = load(r"C:\Users\kumar\OneDrive\Desktop\Data Science\vectorizer.pkl")
-    mdl = load(r"C:\Users\kumar\OneDrive\Desktop\Data Science\model.pkl")
-    df = pd.read_csv(r"C:\Users\kumar\OneDrive\Desktop\Data Science\dataset.csv")
+    vec = load("vectorizer.pkl")
+    mdl = load("model.pkl")
+    df = pd.read_csv("dataset.csv")
     df["clean"] = df["question_text"].apply(lambda t: re.sub(r'[^a-z0-9 ]',' ', t.lower()))
     X = vec.transform(df["clean"])
     acc = accuracy_score(df["label"], mdl.predict(X))
